@@ -15,7 +15,7 @@
   },
   "description": "Tool for convert css into js files for parcel´s library",
   "files": [
-    "dist/"
+    "bin/"
   ],
   "baseUrl": "./src",
   "scripts": {
