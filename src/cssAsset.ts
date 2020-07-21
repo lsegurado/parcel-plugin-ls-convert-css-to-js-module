@@ -8,21 +8,20 @@ class cssAsset extends Asset {
     }
     parse(style: string) {
         const regexImports = new RegExp(/@import '[^']*';|@import "[^"]*";/, 'g');
-        const imports: Array<string> = style.match(regexImports);
-        const cssFileDir = this.name.replace(this.basename, '');;
-        process.chdir(cssFileDir);
-        const importsFormatted = imports ? imports.map(value => value.replace('@import ', '').replace('\'', '').replace('\"', '').replace(';','').replace('\'','')).map(value => fs.readFileSync(value, "utf8")) : [];
+        const imports = style.match(regexImports);
+        const importsFormatted = imports ? imports.map((value, index) => value.replace('@import', `import style${index} from `)) : [];
         const styleWithoutImports = style.replace(regexImports, '');
 
         let resultString = '';
         if (importsFormatted.length > 0) {
-            const styles: string[] = importsFormatted;
-            styles.forEach(style => resultString = resultString.concat(style));
-            resultString = resultString.concat(styleWithoutImports);
+            importsFormatted.forEach(importFormatted => resultString = resultString.concat(importFormatted));
+            resultString = resultString.concat(`let style = '${this.minifyString(styleWithoutImports)}';`);
+            importsFormatted.forEach((_value, index) => resultString = resultString.concat(`style = style.concat(style${index});`));
+            resultString = resultString.concat(`export default style;`);
         } else {
-            resultString = styleWithoutImports;
+            resultString = resultString.concat(`export default '${this.minifyString(styleWithoutImports)}';`);
         }
-        return `export default '${this.minifyString(resultString)}'`
+        return resultString;
     }
     generate() {
         return this.ast;
