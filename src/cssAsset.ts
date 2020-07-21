@@ -9,7 +9,7 @@ class cssAsset extends Asset {
     parse(style: string) {
         const regexImports = new RegExp(/@import '[^']*';|@import "[^"]*";/, 'g');
         const imports: Array<string> = style.match(regexImports);
-        const cssFileDir = this.basename.replace(this.name,'');
+        const cssFileDir = this.name.replace(this.basename, '');;
         process.chdir(cssFileDir);
         const importsFormatted = imports ? imports.map(value => value.replace('@import ', '').replace('\'', '').replace('\"', '').replace(';','').replace('\'','')).map(value => fs.readFileSync(value, "utf8")) : [];
         const styleWithoutImports = style.replace(regexImports, '');
@@ -27,7 +27,6 @@ class cssAsset extends Asset {
     generate() {
         return this.ast;
     }
-
     minifyString(string) {
         return string.replace(/\s+/g, ' ').trim();
     }
