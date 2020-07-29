@@ -2,9 +2,6 @@
   "name": "@lsegurado/parcel-plugin-ls-convert-css-to-js-module",
   "license": "MIT",
   "version": "0.0.10",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/lsegurado"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/lsegurado/parcel-plugin-ls-convert-css-to-js-module.git"
@@ -29,7 +26,7 @@
     "@types/parcel-bundler": "^1.12.1"
   },
   "dependencies": {
-    "@lsegurado/ls-convert-css-to-js-module": "0.0.17",
+    "@lsegurado/ls-convert-css-to-js-module": "0.0.18",
     "parcel-bundler": "^1.12.4"
   }
 }
