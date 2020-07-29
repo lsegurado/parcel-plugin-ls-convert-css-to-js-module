@@ -18,7 +18,7 @@
   "scripts": {
     "build": "tsc",
     "publish-patch-version": "npm version patch && npm run publish-npm",
-    "publish-npm": "npm run build && npm publish"
+    "publish-npm": "npm run build && npm publish --access public"
   },
   "devDependencies": {
     "typescript": "^3.9.6",
