@@ -1,7 +1,7 @@
 {
   "name": "@lsegurado/parcel-plugin-ls-convert-css-to-js-module",
   "license": "MIT",
-  "version": "0.0.10",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/lsegurado/parcel-plugin-ls-convert-css-to-js-module.git"
